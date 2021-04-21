@@ -15,7 +15,7 @@ gem 'sass-rails',                 '6.0.0'
 gem 'webpacker',                  '5.2.1'
 gem 'turbolinks',                 '5.2.1'
 gem 'jbuilder',                   '2.10.0'
-gem 'bootsnap',                   '1.7.2', require: false
+gem 'bootsnap',                   '1.7.2'
 
 group :development, :test do
   gem 'sqlite3', '1.4.2'
@@ -34,10 +34,11 @@ group :test do
   gem 'selenium-webdriver',       '3.142.7'
   gem 'webdrivers',               '4.6.0'
   gem 'rails-controller-testing', '1.0.5'
-  gem 'minitest',                 '5.11.3'
-  gem 'minitest-reporters',       '1.3.8'
+  gem 'rexml',                    '3.2.5'
   gem 'guard',                    '2.16.2'
   gem 'guard-minitest',           '2.4.6'
+  gem 'minitest',                 '5.11.3'
+  gem 'minitest-reporters',       '1.3.8'
 end
 
 group :production do
