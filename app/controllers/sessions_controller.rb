@@ -6,12 +6,17 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user&.authenticate(params[:session][:password])
-      forwarding_url = session[:forwarding_url]
-      reset_session
-      log_in @user
-      params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-      session[:session_token] = @user.session_token
-      redirect_to forwarding_url || @user
+      if @user.activated?
+        forwarding_url = session[:forwarding_url]
+        reset_session
+        log_in @user
+        params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+        session[:session_token] = @user.session_token
+        redirect_to forwarding_url || @user
+      else
+        flash[:warning] = 'Account not activated.'
+        redirect_to root_path
+      end
     else
       flash.now[:danger] = 'Invalid email or password.'
       render 'new'
